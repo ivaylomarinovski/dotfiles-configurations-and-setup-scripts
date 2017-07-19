@@ -29,6 +29,7 @@
   rb = rebase
 
   undo = reset HEAD~1 --mixed
+  g = grep
 [color]
   ui = auto
 [color "branch"]
