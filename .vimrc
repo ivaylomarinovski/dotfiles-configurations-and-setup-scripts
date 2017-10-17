@@ -23,8 +23,11 @@ Plugin 'VundleVim/Vundle.vim'
 " ------Plugins-------
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
-
+Plugin 'molokai'
+Plugin 'tango-desert.vim'
+Plugin 'JamshedVesuna/vim-markdown-preview'
 " Color Themes
+
 Plugin 'colors'
 
 call vundle#end()
@@ -48,3 +51,15 @@ map <C-c> <esc>"*y
 " New line
 map <C-enter> O
 
+" Abbrivations for typos
+abbr reuqire require
+abbr RSPEC RSpec
+abbr rspec RSpec
+
+let g:molokai_original = 1
+
+" Shift lines
+imap <C-S-Up> <Esc>:m -2<CR>
+imap <C-S-Down> <Esc>:m +1<CR>
+nmap <C-S-Up> :m -2<CR>
+nmap <C-S-Down> :m +1<CR>
