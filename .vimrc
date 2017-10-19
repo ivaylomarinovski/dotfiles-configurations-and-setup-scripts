@@ -1,6 +1,7 @@
 syntax on
 set autowrite
 set number  "show line numbers
+set numberwidth=5
 set showcmd  "show command in bottom bar
 set cursorline  "highlight current line
 set wildmenu  "visual autocomplete for command menu
@@ -15,6 +16,16 @@ set colorcolumn=+1
 set statusline+=col:\ %c,
 set ruler
 set ignorecase
+" Don’t reset cursor to start of line when moving around.
+set nostartofline
+" Show the filename
+set title
+
+" Softtabs, 4 spaces
+set tabstop=4
+set shiftwidth=4
+set shiftround
+set expandtab
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -49,7 +60,10 @@ map <C-a> <esc>ggVG<CR>
 map <C-c> <esc>"*y
 
 " New line
-map <C-enter> O
+nmap <C-enter> oi
+imap <C-enter> <Esc>oi
+nmap <CR> o<Esc>i
+nmap <C-S-Enter> <Esc>oji
 
 " Abbrivations for typos
 abbr reuqire require
