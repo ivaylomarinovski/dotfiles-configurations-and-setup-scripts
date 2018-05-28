@@ -96,6 +96,7 @@ alias Git='git'
 alias gIT='git'
 alias CD='cd'
 alias 'CD..'='cd ..'
+alias LA='ls -a'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
