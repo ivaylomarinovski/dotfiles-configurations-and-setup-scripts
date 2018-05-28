@@ -30,6 +30,10 @@
 
   undo = reset HEAD~1 --mixed
   g = grep
+
+  ST = st
+  L = l
+
 [color]
   ui = auto
 [color "branch"]
