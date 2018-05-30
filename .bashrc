@@ -71,8 +71,8 @@ unset color_prompt force_color_prompt
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -97,6 +97,7 @@ alias gIT='git'
 alias CD='cd'
 alias 'CD..'='cd ..'
 alias LA='ls -a'
+alias subl='sublime_text'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -186,7 +187,9 @@ bind -r '\C-s'
 stty -ixon
 
 export BUNDLER_EDITOR='vi'
-export  PATH=$PATH:/home/ivo/Downloads/RubyMine-2017.2.3/bin
+
+NPM_PACKAGES="${HOME}/.npm-packages"
+export PATH="$PATH:$NPM_PACKAGES/bin:/home/ivo/Downloads/sublime_text_3"
 
 export LESS_TERMCAP_mb=$'\e[1;32m'
 export LESS_TERMCAP_md=$'\e[1;32m'
