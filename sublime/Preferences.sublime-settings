@@ -12,7 +12,7 @@
 		"Markdown",
 		"Vintage"
 	],
-	"trim_trailing_white_space_on_save": true,
+	// "trim_trailing_white_space_on_save": true,
 	"tab_size": 2,
 	"rulers": [
 		100, 120
@@ -20,5 +20,8 @@
 	"open_files_in_new_window": false,
 	"draw_minimap_border": true,
 	"draw_white_space": "all",
-	"ensure_newline_at_eof_on_save": true
+	"ensure_newline_at_eof_on_save": true,
+	
+	"folder_exclude_patterns": [".svn", ".git", ".hg", "CVS", "node_modules"]
+
 }
