@@ -30,6 +30,13 @@
 
   undo = reset HEAD~1 --mixed
   g = grep
+  ss = stash save
+  sl = stash list
+  sp = stash pop
+  sll = stash-list
+  slll = stash-list --full
+  sa = "!sh -c 'git stash apply stash@{$1}' -"
+  sd = "!sh -c 'git stash drop stash@{$1}' -"
 
   ST = status
   L = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
