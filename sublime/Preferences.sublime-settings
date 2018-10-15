@@ -6,7 +6,6 @@
 	"remember_open_files": true,
 	"ignored_packages":
 	[
-		"JavaScript",
 		"JavaScript Completions",
 		"JavaScript Enhancements",
 		"Markdown",
