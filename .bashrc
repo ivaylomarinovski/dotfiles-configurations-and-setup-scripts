@@ -1,10 +1,6 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
-# We use preexec and precmd hook functions for Bash
-# If you have anything that's using the Debug Trap or PROMPT_COMMAND 
-# change it to use preexec or precmd
-# See also https://github.com/rcaloras/bash-preexec
 
 # If not running interactively, don't do anything
 case $- in
@@ -67,6 +63,15 @@ else
 fi
 unset color_prompt force_color_prompt
 
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -82,22 +87,10 @@ fi
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-#cd.. alias
-alias 'cd..'='cd ..'
-
-#case typos aliases
-alias GIT='git'
-alias Git='git'
-alias gIT='git'
-alias CD='cd'
-alias 'CD..'='cd ..'
-alias LA='ls -a'
-alias subl='sublime_text'
+# include .bashrc if it exists
+if [ -f $HOME/.bashrc_aliases ]; then
+  . $HOME/.bashrc_aliases
+fi
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -122,82 +115,11 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-# If this is an xterm set more declarative titles 
-# "dir: last_cmd" and "actual_cmd" during execution
-# If you want to exclude a cmd from being printed see line 156
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\$(print_title)\a\]$PS1"
-    __el_LAST_EXECUTED_COMMAND=""
-    print_title () 
-    {
-        __el_FIRSTPART=""
-        __el_SECONDPART=""
-        if [ "$PWD" == "$HOME" ]; then
-            __el_FIRSTPART=$(gettext --domain="pantheon-files" "Home")
-        else
-            if [ "$PWD" == "/" ]; then
-                __el_FIRSTPART="/"
-            else
-                __el_FIRSTPART="${PWD##*/}"
-            fi
-        fi
-        if [[ "$__el_LAST_EXECUTED_COMMAND" == "" ]]; then
-            echo "$__el_FIRSTPART"
-            return
-        fi
-        #trim the command to the first segment and strip sudo
-        if [[ "$__el_LAST_EXECUTED_COMMAND" == sudo* ]]; then
-            __el_SECONDPART="${__el_LAST_EXECUTED_COMMAND:5}"
-            __el_SECONDPART="${__el_SECONDPART%% *}"
-        else
-            __el_SECONDPART="${__el_LAST_EXECUTED_COMMAND%% *}"
-        fi 
-        printf "%s: %s" "$__el_FIRSTPART" "$__el_SECONDPART"
-    }
-    put_title()
-    {
-        __el_LAST_EXECUTED_COMMAND="${BASH_COMMAND}"
-        printf "\033]0;%s\007" "$1"
-    }
-    
-    # Show the currently running command in the terminal title:
-    # http://www.davidpashley.com/articles/xterm-titles-with-bash.html
-    update_tab_command()
-    {
-        # catch blacklisted commands and nested escapes
-        case "$BASH_COMMAND" in 
-            *\033]0*|update_*|echo*|printf*|clear*|cd*)
-            __el_LAST_EXECUTED_COMMAND=""
-                ;;
-            *)
-            put_title "${BASH_COMMAND}"
-            ;;
-        esac
-    }
-    preexec_functions+=(update_tab_command)
-    ;;
-*)
-    ;;
-esac
-
-# Disable XOFF with ctrl+s because of save in vim
-bind -r '\C-s'
-stty -ixon
-
-export BUNDLER_EDITOR='vi'
-
 NPM_PACKAGES="${HOME}/.npm-packages"
-export PATH="$PATH:$NPM_PACKAGES/bin:/home/ivo/Downloads/sublime_text_3"
+export PATH="$PATH:$NPM_PACKAGES/bin:$HOME/programs/sublime_text_3:$HOME/programs/WebStorm/bin"
 
-export LESS_TERMCAP_mb=$'\e[1;32m'
-export LESS_TERMCAP_md=$'\e[1;32m'
-export LESS_TERMCAP_me=$'\e[0m'
-export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[01;33m'
-export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[1;4;31m'
+bind 'set show-all-if-ambiguous on'
+bind 'TAB:menu-complete'
 
 # function to set terminal title
 function set-title(){
@@ -207,3 +129,17 @@ function set-title(){
   TITLE="\[\e]2;$*\a\]"
   PS1="${ORIG}${TITLE}"
 }
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+
+# show git branch in console by default
+parse_git_branch() {
+         git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+     }
+export PS1="\u@\h \[\e[32m\]\w \[\e[91m\]\$(parse_git_branch)\[\e[00m\]$ "
+

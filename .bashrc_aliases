@@ -1,0 +1,47 @@
+#shhorthand aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias LA='ls -a'
+alias lA='ls -a'
+
+#apps shortcut/typo alias
+alias GIT='git'
+alias gIT='git'
+alias Git='git'
+alias VI='vi'
+alias subl='sublime_text'
+alias brave='brave-browser'
+alias terminal='gnome-terminal'
+
+#cd.. alias
+alias 'cd..'='cd ..'
+alias '..'='cd ..'
+alias work='cd ~/work'
+alias cls='clear'
+alias apps='cd ~/programs'
+alias dwn='cd ~/Downloads'
+alias home='cd ~'
+
+#aliasception
+alias list-aliases='cat ~/.bashrc_aliases'
+alias lal='cat ~/.bashrc_aliases'
+alias lag='list-aliases | grep '
+
+#useful commands
+
+#hardware
+alias list-cpu='lscpu' #cpu #list-hardware #hardware
+alias list-hardware='lshw' #hardware #list-hardware #motherboard #storage #memory #usb #cpu #hardware-info
+alias hardware-info='hwinfo --short' #hardware #list-hardware #info #cpu #memory #hardware-info
+alias list-peripherals='lspci' #peripherals #peripheral-component-interconnect #hardware #bus #pci #list-pci
+
+#packages
+alias uninstall='sudo apt-get remove' #uninstall #remove #delete #apt #apt-get #package
+alias list-packages='sudo apt list --installed' #list-packages #list-installed
+alias autoremove='sudo apt-get autoremove' #cleanup #autoremove #remove-dependencies #packages
+alias dpkg-list='dpkg --list' #list-packages #dpkg
+alias purge-package='sudo apt-get purge' #purge #packages #completely-remove #remove-settings
+
+#network
+alias pid-port='sudo netstat -nlp | grep ' #used-port #server #port #(sudo netstat -nlp | grep :80)
