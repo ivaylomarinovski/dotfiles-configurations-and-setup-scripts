@@ -1,4 +1,4 @@
-#shhorthand aliases
+#shorthand aliases
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -45,3 +45,9 @@ alias purge-package='sudo apt-get purge' #purge #packages #completely-remove #re
 
 #network
 alias pid-port='sudo netstat -nlp | grep ' #used-port #server #port #(sudo netstat -nlp | grep :80)
+
+#open config files
+alias bashrc='vi ~/.bashrc'
+alias bashrca='vi ~/.bashrc_aliases'
+
+
