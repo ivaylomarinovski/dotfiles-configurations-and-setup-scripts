@@ -1,0 +1,40 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+		"JavaScript Enhancements"
+	],
+	"installed_packages":
+	[
+		"A File Icon",
+		"Angular CLI",
+		"AutoFileName",
+		"ColorPicker",
+		"Emmet",
+		"File Navigator",
+		"FileDiffs",
+		"FileIcons",
+		"Focus File on Sidebar",
+		"Gutter Color",
+		"JavaScript Completions",
+		"JavaScript Enhancements",
+		"JavaScript Ultimate",
+		"LESS",
+		"MarkdownEditing",
+		"Modific",
+		"Package Control",
+		"PackageResourceViewer",
+		"Sass",
+		"SideBarEnhancements",
+		"SideBarTools",
+		"SortBy",
+		"Sublime Files",
+		"SublimeCodeIntel",
+		"SublimeLinter",
+		"Terminal",
+		"Terminality",
+		"TypeScript",
+		"TypeScript Syntax",
+		"TypescriptCompletion"
+	]
+}
